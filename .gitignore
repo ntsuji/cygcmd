@@ -1,0 +1,7 @@
+*
+!.gitattributes
+!.gitignore
+!README.md
+!cygcmd.sh
+!install.sh
+!uninstall.sh
