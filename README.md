@@ -1,3 +1,5 @@
+This script is inspired by [cyg-wrapper](http://hermitte.free.fr/cygwin/#Win32).
+
 # How to use
 
 ## Install
