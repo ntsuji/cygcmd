@@ -1,17 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 
 program="$1"
 shift
 
-args=''
-
+i=0
 for arg in "$@"
 do
 	if [ -e "$arg" ]
 	then
 		arg="`cygpath -w "$arg"`"
 	fi
-	args="$args \"$arg\""
+
+	args[$i]="$arg"
+	i=`expr $i + 1`
 done
 
-"$program" $args
+"$program" "${args[@]}"

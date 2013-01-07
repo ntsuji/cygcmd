@@ -14,4 +14,4 @@ else
 	rm -rf "$binDir/$binName"
 fi
 
-runas /user:administrator "mklink /d "`cygpath -w "$binDir/$binName"`" "`cygpath -w "$PWD/$srcFile"`""
+ln -s "$PWD/$srcFile" "$binDir/$binName"
