@@ -6,12 +6,15 @@ binDir='/usr/local/bin'
 
 cd "`dirname "${0}"`"
 
-if [ -e "${binDir}/${binName}" -a ! -e "${binDir}/.${binName}.bak" \
-	-a "`ls -al "${binDir}" | fgrep " ${binName} " | sed 's/.*-> \(.*\)/\1/'`" != "${PWD}/${srcFile}" ]
+src="${PWD}/${srcFile}"
+dest="${binDir}/${binName}"
+backup="${binDir}/.${binName}.bak"
+
+if [ -e "${dest}" -a ! -e "${backup}" -a "`readlink "${dest}"`" != "${src}" ]
 then
-	mv "${binDir}/${binName}" "${binDir}/${binName}.bak"
+	mv "${dest}" "${backup}"
 else
-	rm -rf "${binDir}/${binName}"
+	rm -rf "${dest}"
 fi
 
-ln -s "${PWD}/${srcFile}" "${binDir}/${binName}"
+ln -s "${src}" "${dest}"
