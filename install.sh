@@ -1,20 +1,16 @@
-#!/bin/sh
-
-srcFile='cygcmd.sh'
-binName='cygcmd'
-binDir='/usr/local/bin'
-
-cd "`dirname "${0}"`"
-
-src="${PWD}/${srcFile}"
-dest="${binDir}/${binName}"
-backup="${binDir}/.${binName}.bak"
-
-if [ -e "${dest}" -a ! -e "${backup}" -a "`readlink "${dest}"`" != "${src}" ]
-then
-	mv "${dest}" "${backup}"
+#!/bin/bash
+readonly src_file='cygcmd.sh'
+readonly bin_name='cygcmd'
+readonly bin_dir='/usr/local/bin'
+cd "$(dirname "${0}")"
+readonly src="${PWD}/${src_file}"
+readonly dst="${bin_dir}/${bin_name}"
+readonly backup="${bin_dir}/.${bin_name}.bak"
+if [[ -e "${dst}" &&
+    ! -e "${backup}" &&
+    "$(readlink "${dst}")" != "${src}" ]]; then
+  mv "${dst}" "${backup}"
 else
-	rm -rf "${dest}"
+  rm -rf "${dst}"
 fi
-
-ln -s "${src}" "${dest}"
+ln -s "${src}" "${dst}"
